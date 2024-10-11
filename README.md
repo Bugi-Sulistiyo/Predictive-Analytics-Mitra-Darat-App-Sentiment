@@ -1,43 +1,21 @@
 # Laporan Proyek Machine Learning - Nama Anda
 
 ## Domain Proyek
-
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-  
-  Format Referensi: [Judul Referensi](https://scholar.google.com/) 
+MitraDarat merupakan aplikasi milik Dinas Perhubungan Republik Indonesia yang menyediakan layanan informasi terkait transportasi darat, termasuk fitur utama seperti pelacakan bus kota secara real-time. Fitur ini sangat krusial bagi masyarakat pengguna transportasi umum di kota-kota besar. Proyek ini bertujuan untuk menganalisis sentimen masyarakat terhadap aplikasi MitraDarat, guna mengetahui tingkat kepuasan pengguna serta mengidentifikasi potensi perbaikan pada fitur-fitur yang ada. Data yang digunakan diperoleh dari ulasan pengguna di Google Play melalui Google Play API.
 
 ## Business Understanding
-
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
+Aplikasi MitraDarat berperan penting dalam menunjang layanan transportasi yang terintegrasi, terutama dalam pelacakan bus kota secara real-time. Namun, persepsi dan pengalaman pengguna terhadap aplikasi ini belum sepenuhnya dipahami. Analisis sentimen ulasan pengguna dapat membantu mengidentifikasi potensi masalah dan kebutuhan akan perbaikan, sehingga aplikasi ini dapat terus memenuhi harapan masyarakat.
 
 ### Problem Statements
-
-Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+1. Bagaimana persepsi dan sentimen pengguna terhadap aplikasi MitraDarat, terutama terkait fitur pelacakan bus kota?
+2. Apakah ada tren umum dalam ulasan pengguna yang menunjukkan masalah teknis atau keluhan spesifik terhadap fitur-fitur tertentu?
+3. Apakah aplikasi MitraDarat membutuhkan peningkatan lebih lanjut berdasarkan umpan balik pengguna?
 
 ### Goals
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
-
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+1. Mengidentifikasi dan memahami sentimen masyarakat terhadap aplikasi MitraDarat berdasarkan ulasan yang tersedia di Google Play.
+2. Mengungkap tren atau pola utama dalam komentar yang menunjukkan area yang perlu diperbaiki atau dikembangkan.
+3. Memberikan rekomendasi berdasarkan hasil analisis sentimen untuk meningkatkan kualitas layanan aplikasi MitraDarat, terutama pada fitur pelacakan bus.
 
 ## Data Understanding
 Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).

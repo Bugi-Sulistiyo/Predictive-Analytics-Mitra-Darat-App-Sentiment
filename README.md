@@ -20,7 +20,12 @@ Aplikasi MitraDarat berperan penting dalam menunjang layanan transportasi yang t
 ## Data Understanding
 Data yang digunakan dalam proyek ini diambil dari ulasan aplikasi MitraDarat di Google Play Store menggunakan Google Play API melalui alat bantu `reviews` dengan bahasa pemrograman Python. Data tersebut mencakup berbagai informasi terkait ulasan pengguna, namun hanya variabel `content` (teks ulasan) dan `score` (nilai rating) yang digunakan untuk analisis sentimen. Selain itu, variabel `at` digunakan untuk mendapatkan rentang waktu ulasan yang dikumpulkan, yaitu dari 2023-02-28 hingga 2024-10-09.
 
-Dataset ini terdiri dari 1902 ulasan yang diberikan oleh 1890 pengguna berbeda. Distribusi ulasan berdasarkan sentimen yang didapatkan dari score rating adalah sebagai berikut:
+Dataset ini terdiri dari 1902 ulasan yang diberikan oleh 1890 pengguna berbeda. Distribusi ulasan berdasarkan sentimen yang didapatkan dengan bantuan lexicon adalah sebagai berikut:
+- **Positif**: 344 ulasan (21,01%)
+- **Negatif**: 1118 ulasan (68,25%)
+- **Netral**: 176 ulasan (10,74%)
+
+Distribusi ulasan berdasarkan sentimen yang didapatkan dari score rating adalah sebagai berikut:
 - **Positif**: 960 ulasan (57,83%)
 - **Negatif**: 540 ulasan (32,53%)
 - **Netral**: 160 ulasan (9,64%)
@@ -52,38 +57,70 @@ Proses data preparation dilakukan melalui beberapa tahapan untuk memastikan kual
   Teks dipecah menjadi token menggunakan **nltk.tokenizer** untuk mempermudah analisis.
 
 5. **Pelabelan Sentimen**<br>
-  Sentimen diberi label menggunakan metode **score rating** dari nilai ulasan dan juga dibandingkan dengan metode berbasis **lexicon**. Berdasarkan evaluasi, metode **score rating** menunjukkan hasil yang lebih baik.
+  Sentimen diberi label menggunakan metode **score rating** dari nilai ulasan dan juga dibandingkan dengan metode berbasis **lexicon**. Berdasarkan evaluasi, metode **lexicon** menunjukkan hasil yang lebih baik.
 
-6. **Pembagian Data:**
-   - Dataset dibagi menjadi data latih, validasi, dan uji dengan rasio 70:10:20 menggunakan **train_test_split**.
+6. **Pembagian Data**<br>
+  Dataset dibagi menjadi data latih, dan uji dengan rasio 80:20 menggunakan **train_test_split**.
 
-7. **Penilaian Lexicon:**
-   - Skor dari metode lexicon juga diperoleh sebagai salah satu fitur tambahan.
+1. **Penilaian Lexicon**<br>
+  Skor dari metode lexicon juga diperoleh sebagai salah satu fitur tambahan.
 
 Dengan serangkaian proses ini, data siap digunakan untuk pemodelan machine learning.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+Model machine learning yang digunakan untuk menyelesaikan permasalahan analisis sentimen pada aplikasi MitraDarat adalah Random Forest Classifier, Logistic Regression, Decision Tree Classifier, dan model LSTM.
 
-## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+### Model yang Digunakan
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+1. **Random Forest Classifier**
+2. **Logistic Regression**
+3. **Decision Tree Classifier**
+4. **Model LSTM**:
+   - Arsitektur:
+     ```python
+     model = Sequential([
+         Embedding(vocab_size, embedding_dim, input_length=max_length),
+         LSTM(64, return_sequences=True),
+         BatchNormalization(),
+         Dropout(0.5),
+         LSTM(32),
+         BatchNormalization(),
+         Dropout(0.5),
+         Dense(32, activation="relu", kernel_regularizer=l2(0.001)),
+         Dropout(0.6),
+         Dense(3, activation="softmax")
+     ])
+     model.compile(loss="sparse_categorical_crossentropy", optimizer=Adam(learning_rate=0.0004), metrics=["accuracy"])
+     ```
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+### Hasil Evaluasi Model
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Metrik evaluasi yang digunakan untuk mengukur kinerja model yang telah diterapkan dalam analisis sentimen ulasan aplikasi MitraDarat adalah **akurasi**, yang merupakan indikator utama dalam pengukuran kinerja klasifikasi.
 
-**---Ini adalah bagian akhir laporan---**
+1. **Akurasi**: 
+   - Akurasi dihitung sebagai proporsi prediksi yang benar dari total prediksi. Dalam konteks ini, akurasi menunjukkan seberapa baik model dalam mengklasifikasikan sentimen menjadi kategori positif, negatif, dan netral.
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+### Analisis Hasil
+
+- **Random Forest Classifier**: 
+  - Akurasi: 79.27%
+- **Logistic Regression**: 
+  - Akurasi: 76.42%
+- **Decision Tree Classifier**: 
+  - Akurasi: 69.11%
+- **Model LSTM**: 
+  - Akurasi: 84.96% (pada epoch ke-31)
+
+Model LSTM menunjukkan performa terbaik dengan akurasi 84.96%, menjadikannya model yang paling efektif untuk klasifikasi sentimen dalam dataset ini. Sebaliknya, Decision Tree Classifier memiliki akurasi terendah, yang mungkin disebabkan oleh kecenderungan untuk overfitting pada data pelatihan. 
+
+Akurasi yang lebih tinggi pada model LSTM dapat dikaitkan dengan kemampuannya dalam memahami konteks dan urutan kata dalam ulasan, serta penanganan data yang lebih kompleks dibandingkan dengan model tradisional lainnya.
+
+Secara keseluruhan, hasil evaluasi ini menunjukkan bahwa penggunaan model berbasis deep learning, seperti LSTM, lebih efektif dalam analisis sentimen dibandingkan dengan model machine learning yang lebih sederhana.
+
+## Kesimpulan
+Berdasarkan hasil analisis sentimen terhadap ulasan pengguna aplikasi MitraDarat, dapat disimpulkan bahwa mayoritas ulasan bersentimen positif, namun terdapat juga bagian signifikan dari ulasan yang bersentimen negatif. Dari hasil evaluasi model, model LSTM menunjukkan performa terbaik dengan akurasi 84.96%, menjadikannya model yang paling efektif dalam mengklasifikasikan sentimen ulasan pengguna dibandingkan model lain seperti Random Forest Classifier, Logistic Regression, dan Decision Tree Classifier.
+
+Kesimpulan ini mengindikasikan bahwa aplikasi MitraDarat telah memberikan kontribusi positif kepada sebagian besar penggunanya, khususnya dalam fitur-fitur seperti pelacakan bus online. Namun, ada juga ulasan negatif yang perlu diperhatikan lebih lanjut, yang menunjukkan adanya area yang perlu diperbaiki untuk meningkatkan pengalaman pengguna secara keseluruhan.
+
+Dengan hasil ini, pihak pengelola aplikasi, yaitu Dinas Perhubungan, dapat menggunakan informasi dari analisis sentimen ini untuk mengidentifikasi area peningkatan pada aplikasi, terutama untuk mengatasi keluhan yang sering disampaikan pengguna. Dengan demikian, diharapkan aplikasi dapat semakin memenuhi kebutuhan masyarakat dan meningkatkan kepuasan pengguna secara lebih luas.

@@ -33,11 +33,34 @@ Distribusi berdasarkan skor rating menunjukkan kecenderungan mayoritas ulasan be
 - **Skor 4**: 105 ulasan
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Proses data preparation dilakukan melalui beberapa tahapan untuk memastikan kualitas data sebelum diterapkan ke model machine learning.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+1. **Pembersihan Data**<br>
+  Langkah awal yang dilakukan adalah menghapus nilai **null** setelah proses pra-pemrosesan teks selesai, dan menghilangkan duplikasi data sebelum memulai pra-pemrosesan.
+
+2. **Pra-pemrosesan Teks**<br>
+  Semua teks ulasan melalui proses pra-pemrosesan, termasuk:
+    - Mengubah teks menjadi huruf kecil.
+    - Menghapus tanda baca, karakter spesial, dan angka menggunakan **regex**.
+    - Melakukan **stemming** dengan bantuan paket **Sastrawi** untuk mengubah kata-kata ke bentuk dasarnya.
+    - Menghilangkan kata-kata umum yang tidak berpengaruh (**stopwords**) menggunakan paket **nltk**.
+
+3. **Konversi Bahasa Gaul**<br>
+  Ulasan yang mengandung bahasa gaul atau informal dikonversi ke bentuk formal dengan menggunakan fungsi kustom yang dibuat untuk tujuan ini.
+
+4. **Tokenisasi**<br>
+  Teks dipecah menjadi token menggunakan **nltk.tokenizer** untuk mempermudah analisis.
+
+5. **Pelabelan Sentimen**<br>
+  Sentimen diberi label menggunakan metode **score rating** dari nilai ulasan dan juga dibandingkan dengan metode berbasis **lexicon**. Berdasarkan evaluasi, metode **score rating** menunjukkan hasil yang lebih baik.
+
+6. **Pembagian Data:**
+   - Dataset dibagi menjadi data latih, validasi, dan uji dengan rasio 70:10:20 menggunakan **train_test_split**.
+
+7. **Penilaian Lexicon:**
+   - Skor dari metode lexicon juga diperoleh sebagai salah satu fitur tambahan.
+
+Dengan serangkaian proses ini, data siap digunakan untuk pemodelan machine learning.
 
 ## Modeling
 Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.

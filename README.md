@@ -18,17 +18,19 @@ Aplikasi MitraDarat berperan penting dalam menunjang layanan transportasi yang t
 3. Memberikan rekomendasi berdasarkan hasil analisis sentimen untuk meningkatkan kualitas layanan aplikasi MitraDarat, terutama pada fitur pelacakan bus.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+Data yang digunakan dalam proyek ini diambil dari ulasan aplikasi MitraDarat di Google Play Store menggunakan Google Play API melalui alat bantu `reviews` dengan bahasa pemrograman Python. Data tersebut mencakup berbagai informasi terkait ulasan pengguna, namun hanya variabel `content` (teks ulasan) dan `score` (nilai rating) yang digunakan untuk analisis sentimen. Selain itu, variabel `at` digunakan untuk mendapatkan rentang waktu ulasan yang dikumpulkan, yaitu dari 2023-02-28 hingga 2024-10-09.
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Dataset ini terdiri dari 1902 ulasan yang diberikan oleh 1890 pengguna berbeda. Distribusi ulasan berdasarkan sentimen yang didapatkan dari score rating adalah sebagai berikut:
+- **Positif**: 960 ulasan (57,83%)
+- **Negatif**: 540 ulasan (32,53%)
+- **Netral**: 160 ulasan (9,64%)
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
+Distribusi berdasarkan skor rating menunjukkan kecenderungan mayoritas ulasan berada di skor 5 dan 1:
+- **Skor 5**: 833 ulasan
+- **Skor 1**: 426 ulasan
+- **Skor 3**: 160 ulasan
+- **Skor 2**: 114 ulasan
+- **Skor 4**: 105 ulasan
 
 ## Data Preparation
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.

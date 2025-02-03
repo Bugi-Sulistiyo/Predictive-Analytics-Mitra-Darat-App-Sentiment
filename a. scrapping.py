@@ -1,17 +1,17 @@
 # Import the necessary packages
-from google_play_scraper import reviews, Sort
-import csv
-import os
+from google_play_scraper import reviews, Sort   # package for scrapping from google play store
+import csv                                      # package for handling csv files
+import os                                       # package for handling file system
 
 os.mkdir("./data")
 
 # configure the search
 scrapped_data, _ = reviews(
-    "ngi.muchi.hubdat",
-    lang="id",
-    country="id",
-    sort=Sort.NEWEST,
-    count=5000
+    "ngi.muchi.hubdat", # app id
+    lang="id",          # language (Indonesian)
+    country="id",       # country   (Indonesia)
+    sort=Sort.NEWEST,   # sort by newest
+    count=5000          # number of reviews to scrap
 )
 
 # Save the data to a CSV file

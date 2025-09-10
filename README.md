@@ -65,10 +65,10 @@ A custom **LSTM** architecture was built with embedding layers, dropout, and bat
 
 ## 📈 Visualizations
 Some of the key visualizations generated during this project include:
-- **Word Cloud**: Distribution of keywords per sentiment label.  
-- **Training History**: Line chart of accuracy and loss for training vs validation.  
-
-(📎 *Links/images will be added here*)  
+- **Word Cloud**: Distribution of keywords per sentiment label.
+  ![word cloud image](/img/word_cloud.png "Word Cloud")
+- **Training History**: Line chart of accuracy and loss for training vs validation.
+  ![model performance image](/img/train_performance.png "Model Performance")
 
 ---
 
